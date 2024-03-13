@@ -17,7 +17,7 @@ const ServiceCard: React.FC<Props> = ({ service }) => {
       <div className="relative">
         <div className="absolute top-0 left-0 bg-gray-900 w-20 h-20 -mt-8 -ml-8 transform rotate-45 rounded-lg" />
         <div className="flex items-center justify-center w-24 h-24 bg-gray-950 rounded-full">
-          <Icon className="text-3xl text-white" />
+          <Icon className="text-3xl text-accent" />
         </div>
       </div>
       <div className="mt-6">

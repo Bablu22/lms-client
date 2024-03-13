@@ -10,6 +10,7 @@ const Benifits = () => {
           alt="home2"
           placeholder="blur"
           className="rounded-lg"
+          priority
         />
       </div>
       <div className="w-full lg:w-1/2">

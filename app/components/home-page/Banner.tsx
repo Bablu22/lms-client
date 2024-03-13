@@ -18,7 +18,7 @@ const Banner = () => {
           </button>
         </div>
         <div className="md:w-1/2">
-          <Image src={bannerImage} alt="banner" />
+          <Image src={bannerImage} alt="banner" placeholder="blur" priority />
         </div>
       </div>
     </div>

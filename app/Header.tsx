@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import ThemeSwitch from "./utils/ThemeSwitch";
+import Logo from "./components/Logo";
 
 const navigation = [
   { name: "Home", href: "#", current: true },
@@ -36,14 +37,7 @@ const Header = () => {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center  sm:justify-between">
-                <div className="flex flex-shrink-0 items-center">
-                  <div className="h-10 w-10 bg-primary rounded-full flex items-center justify-center mr-2">
-                    <h1 className="text-secondary text-xl font-bold">ET</h1>
-                  </div>
-                  <h1 className="text-white text-xl md:text-2xl font-bold">
-                    EducationTemp
-                  </h1>
-                </div>
+                <Logo />
 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
