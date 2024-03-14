@@ -5,9 +5,10 @@ import { Fragment } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import ThemeSwitch from "./utils/ThemeSwitch";
 import Logo from "./components/Logo";
+import Link from "next/link";
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
+  { name: "Home", href: "/", current: true },
   { name: "Courses", href: "#", current: false },
   { name: "Blog", href: "#", current: false },
   { name: "Contact", href: "#", current: false },
@@ -42,7 +43,7 @@ const Header = () => {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={classNames(
@@ -54,8 +55,14 @@ const Header = () => {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
+                    <Link
+                      href="/login"
+                      className="text-accent px-3 py-2 text-sm font-medium"
+                    >
+                      Login
+                    </Link>
                   </div>
                 </div>
               </div>
