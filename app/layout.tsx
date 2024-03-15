@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
+import "react-loading-skeleton/dist/skeleton.css";
 import Header from "./Header";
 import Footer from "./components/Footer";
 import "./globals.css";
-import ThemeProvider from "./utils/ThemeProvider";
-import StoreProvider from "./utils/StoreProvider";
+
 import { Toaster } from "react-hot-toast";
+import StoreProvider from "./utils/StoreProvider";
+import ThemeProvider from "./utils/ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

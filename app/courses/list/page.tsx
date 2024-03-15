@@ -1,4 +1,6 @@
-import CourseCard from "./_components/CourseCard";
+import CourseCard from "../_components/CourseCard";
+import { Metadata } from "next";
+
 const courses = [
   {
     _id: "65ef44c112b6f233edb4e1b7",
@@ -109,4 +111,11 @@ const AllCourses = () => {
   );
 };
 
+export const revalidate = 0;
 export default AllCourses;
+
+export const metadata: Metadata = {
+  title: "All Courses",
+  description: "Browse all available courses.",
+  keywords: "courses, web development, python, data science",
+};
