@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 const ContactPage = () => {
   return (
     <div className="bg-white py-24 sm:py-32">
@@ -53,6 +55,13 @@ const ContactPage = () => {
       </div>
     </div>
   );
+};
+
+export const metadata: Metadata = {
+  title: "Contact Us | EduTech",
+  description:
+    "Contact us to schedule a visit. We are always happy to meet our new and existing clients.",
+  keywords: "contact, office, location, address, visit, schedule, meet, client",
 };
 
 export default ContactPage;

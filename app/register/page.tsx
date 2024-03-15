@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "../components/Logo";
 import RegisterForm from "../components/auth/RegisterForm";
 import SocialLink from "../components/auth/SocialLink";
+import { Metadata } from "next";
 
 const RegisterPage = () => {
   return (
@@ -43,3 +44,11 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
+export const metadata: Metadata = {
+  title: "Register | EduTech",
+  description:
+    "Register for free and start learning web development, python, data science and more. Get access to free courses and tutorials on EduTech",
+  keywords:
+    "register, free, learn, web development, python, data science, tutorial, course, education",
+};

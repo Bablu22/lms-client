@@ -115,7 +115,8 @@ export const revalidate = 0;
 export default AllCourses;
 
 export const metadata: Metadata = {
-  title: "All Courses",
-  description: "Browse all available courses.",
+  title: "All Courses | EduTech",
+  description:
+    "Browse all available courses. Learn web development, Python, and data science.",
   keywords: "courses, web development, python, data science",
 };

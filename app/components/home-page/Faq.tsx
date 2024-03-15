@@ -28,7 +28,7 @@ const Faq = () => {
           <Disclosure as="div" key={faq.question} className="pt-6">
             {({ open }) => (
               <>
-                <dt>
+                <div>
                   <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
                     <span className="text-base flex items-center space-x-8 font-semibold leading-7">
                       <span className="text-lg text-indigo-600">0{faq.id}</span>{" "}
@@ -48,7 +48,7 @@ const Faq = () => {
                       )}
                     </span>
                   </Disclosure.Button>
-                </dt>
+                </div>
                 <Disclosure.Panel as="dd" className="mt-2 pr-12">
                   <p className="text-base leading-7 text-gray-600">
                     {faq.answer}

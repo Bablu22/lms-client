@@ -1,4 +1,5 @@
 import notfoundImage from "@/public/not-found.jpg";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,3 +25,10 @@ const NotFound = () => {
 };
 
 export default NotFound;
+
+export const metadata: Metadata = {
+  title: "Page Not Found | EduTech",
+  description:
+    "The page you are looking for does not exist. Go back to the home page to continue browsing our courses and resources",
+  keywords: "page not found, 404, error, home, courses, resources",
+};

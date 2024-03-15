@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "../components/Logo";
 import SocialLink from "../components/auth/SocialLink";
 import LoginForm from "../components/auth/LoginForm";
+import { Metadata } from "next";
 
 const LoginPage = () => {
   return (
@@ -43,3 +44,11 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+export const metadata: Metadata = {
+  title: "Login | EduTech",
+  description:
+    "Login to your account to access your courses, track your progress, and more",
+  keywords:
+    "login, account, access, courses, progress, track, learn, education",
+};

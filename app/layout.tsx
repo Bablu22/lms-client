@@ -12,9 +12,10 @@ import ThemeProvider from "./utils/ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Education Temp",
+  title: "EduTech | Modern Education Platform",
   description:
     "Education Temp is a modern education platform for everyone. Learn, teach, and study with Education Temp.",
+  keywords: "education, learn, teach, study, courses, tutorials, resources",
 };
 
 export default function RootLayout({

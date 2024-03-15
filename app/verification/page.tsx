@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Logo from "../components/Logo";
 import VerificationForm from "../components/auth/VerificationForm";
 
@@ -27,3 +28,11 @@ const EmailVerificationPage = ({ searchParams }: Props) => {
 };
 
 export default EmailVerificationPage;
+
+export const metadata: Metadata = {
+  title: "Email Verification | EduTech",
+  description:
+    "Verify your email to access your courses, track your progress, and more",
+  keywords:
+    "email, verification, account, access, courses, progress, track, learn, education",
+};
