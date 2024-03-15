@@ -5,6 +5,8 @@ import Header from "./Header";
 import Footer from "./components/Footer";
 import "./globals.css";
 import ThemeProvider from "./utils/ThemeProvider";
+import StoreProvider from "./utils/StoreProvider";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,16 +21,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <NextTopLoader showSpinner={false} color="#FCD980" />
-
+        <Toaster />
         <ThemeProvider attribute="class" defaultTheme="light">
-          <Header />
-          <main className="text-slate-900 dark:text-slate-200 dark:bg-gray-950">
-            {children}
-          </main>
-          <Footer />
+          <StoreProvider>
+            <Header />
+            <main className="text-slate-900 dark:text-slate-200 dark:bg-gray-950">
+              {children}
+            </main>
+            <Footer />
+          </StoreProvider>
         </ThemeProvider>
       </body>
     </html>

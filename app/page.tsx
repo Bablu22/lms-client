@@ -1,5 +1,6 @@
 import Banner from "./components/home-page/Banner";
 import Benifits from "./components/home-page/Benifits";
+import Faq from "./components/home-page/Faq";
 import Services from "./components/home-page/Services";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <div className="container mx-auto px-4">
         <Services />
         <Benifits />
+        <Faq />
       </div>
     </div>
   );

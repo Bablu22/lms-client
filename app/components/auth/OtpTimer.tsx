@@ -1,31 +1,35 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 
 interface Props {
-  isStart: boolean;
+  token: string;
 }
 
-const CountdownTimer: React.FC<Props> = ({ isStart }) => {
+const CountdownTimer: React.FC<Props> = ({ token }) => {
   const [remainingTime, setRemainingTime] = useState(0);
 
   useEffect(() => {
     const countdownDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
 
+    let storedToken = localStorage.getItem("countdownToken");
     let startTime: number;
 
-    if (isStart) {
+    if (storedToken === token) {
       const storedStartTime = localStorage.getItem("countdownStartTime");
       if (storedStartTime) {
         startTime = parseInt(storedStartTime, 10);
+        const elapsedTime = Date.now() - startTime;
+        const adjustedRemainingTime = countdownDuration - elapsedTime;
+        setRemainingTime(Math.max(0, adjustedRemainingTime));
       } else {
         startTime = Date.now();
         localStorage.setItem("countdownStartTime", startTime.toString());
+        setRemainingTime(countdownDuration);
       }
-      const elapsedTime = Date.now() - startTime;
-      setRemainingTime(countdownDuration - elapsedTime);
     } else {
-      localStorage.removeItem("countdownStartTime");
+      startTime = Date.now();
+      localStorage.setItem("countdownToken", token);
+      localStorage.setItem("countdownStartTime", startTime.toString());
+      setRemainingTime(countdownDuration);
     }
 
     const intervalId = setInterval(() => {
@@ -33,7 +37,7 @@ const CountdownTimer: React.FC<Props> = ({ isStart }) => {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [isStart]);
+  }, [token]);
 
   // Format remaining time into minutes and seconds
   const minutes = Math.floor(remainingTime / (1000 * 60));

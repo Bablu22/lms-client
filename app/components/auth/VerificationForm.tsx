@@ -1,9 +1,22 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRegisterMutation } from "@/app/redux/features/auth/authApi";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import ErrorMessage from "../ErrorMessage";
 import OptTimer from "./OtpTimer";
 
-const VerificationForm = () => {
+interface Props {
+  email: string;
+  token: string;
+}
+
+const VerificationForm = ({ email, token }: Props) => {
+  const [register, { error: mutationError, data, isSuccess }] =
+    useRegisterMutation();
+
+  const router = useRouter();
   const inputRefs = [
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
@@ -25,8 +38,6 @@ const VerificationForm = () => {
     3: "",
   });
   const [error, setError] = useState<string>("");
-  const [isStart, setIsStart] = useState<boolean>(false);
-
   const handleInputChange = (index: number, value: string) => {
     if (value.length === 1 && index < 3) {
       inputRefs[index + 1].current?.focus();
@@ -37,18 +48,32 @@ const VerificationForm = () => {
     });
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Verification successful! You can now login.");
+      router.push("/login");
+      setError("");
+    }
+
+    if (mutationError) {
+      const error = mutationError as any;
+      setError(error.message);
+    }
+  }, [mutationError, isSuccess]);
+
   const handleVerify = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const enteredOtp = Object.values(otp).join("");
-    console.log(enteredOtp);
 
-    if (enteredOtp === "1234") {
-      // Example: replace "1234" with your actual OTP
-      setError("");
-      // Success: Perform actions after OTP verification
-    } else {
-      setError("Invalid OTP. Please try again.");
+    if (enteredOtp.length < 4) {
+      setError("Please enter a valid OTP");
+      return;
     }
+    setError("");
+    register({
+      token,
+      code: enteredOtp,
+    });
   };
 
   return (
@@ -56,14 +81,17 @@ const VerificationForm = () => {
       {
         /* 5 minute countdown*/
         <div className=" mt-7">
-          <OptTimer isStart={isStart} />
+          <OptTimer token={token} />
         </div>
       }
+      {error && <ErrorMessage errorMessage={error} />}
       <form className="space-y-6" onSubmit={handleVerify}>
         <div className="text-white text-center mt-10">
           <div className="mt-4">
-            <p className="font-thin">Enter the OTP you received at</p>
-            <p className=" font-medium">bablu@gmail.com</p>
+            <p className="font-thin">
+              Enter the OTP sent to your email address!
+            </p>
+            <p className=" font-medium">{email}</p>
           </div>
           <div className="flex justify-center mt-5 space-x-5">
             {Array.from({ length: 4 }, (_, index) => (
@@ -79,15 +107,9 @@ const VerificationForm = () => {
               />
             ))}
           </div>
-          {error && <p className="text-red-300 text-sm mt-5">{error}</p>}
         </div>
         <div className="text-center">
-          <button
-            type="submit"
-            className="
-            bg-accent  text-gray-900  w-full  py-2  rounded-md  font-semibold  shadow-sm  hover:bg-accent-dark  focus:outline-none    mt-5
-          "
-          >
+          <button type="submit" className="form-btn">
             Verify
           </button>
         </div>

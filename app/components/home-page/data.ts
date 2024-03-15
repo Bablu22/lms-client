@@ -51,3 +51,36 @@ export const SERVICE_DATA = [
     icon: FaUserTie,
   },
 ];
+
+export const faqs = [
+  {
+    id: 1,
+    question: "How do I enroll in a course?",
+    answer:
+      "To enroll in a course, first, make sure you are logged in to your account. Then, navigate to the course catalog and find the course you're interested in. Click on the 'Enroll' button, and you'll be automatically enrolled in the course.",
+  },
+  {
+    id: 2,
+    question: "Can I access course materials on mobile devices?",
+    answer:
+      "Yes, you can access course materials on mobile devices. Our platform is fully responsive, allowing you to view lectures, complete assignments, and participate in discussions on your smartphone or tablet.",
+  },
+  {
+    id: 3,
+    question: "How do I reset my password?",
+    answer:
+      "If you've forgotten your password, you can reset it by clicking on the 'Forgot Password' link on the login page. Follow the instructions provided, and you'll receive an email with a link to reset your password.",
+  },
+  {
+    id: 4,
+    question: "Are certificates provided upon course completion?",
+    answer:
+      "Yes, certificates are provided upon successful completion of a course. Once you've finished all the required coursework and assessments, you'll be able to download a certificate of completion from your account dashboard.",
+  },
+  {
+    id: 5,
+    question: "How can I contact my instructor?",
+    answer:
+      "You can contact your instructor through the messaging feature on our platform. Simply navigate to the course page and click on the 'Messages' tab to send a message directly to your instructor.",
+  },
+];

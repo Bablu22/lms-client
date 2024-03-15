@@ -1,13 +1,18 @@
 "use client";
 
+import { useSendVerificationMutation } from "@/app/redux/features/auth/authApi";
+import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useEffect, useState } from "react";
+import ErrorMessage from "../ErrorMessage";
+import Spinner from "../Spinner";
 
 const registerSchema = yup.object().shape({
   name: yup.string().required("Please enter your name"),
   email: yup
     .string()
-    .email("Invalid email")
+    .email("Please enter a valid email address")
     .required("Please enter your email"),
   password: yup
     .string()
@@ -16,6 +21,24 @@ const registerSchema = yup.object().shape({
 });
 
 const RegisterForm = () => {
+  const [sendVerification, { error, data, isLoading, isSuccess, isError }] =
+    useSendVerificationMutation();
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (error) {
+      const errorData = error as any;
+      setErrorMessage(errorData.data.message);
+    }
+
+    if (isSuccess) {
+      router.push(
+        `/verification?email=${data.data.email}&token=${data.data.token}`
+      );
+    }
+  }, [isSuccess, error]);
+
   const { handleChange, handleSubmit, errors, touched, values } = useFormik({
     initialValues: {
       name: "",
@@ -23,13 +46,14 @@ const RegisterForm = () => {
       password: "",
     },
     validationSchema: registerSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      await sendVerification(values);
     },
   });
 
   return (
     <form className="space-y-6 mt-10" onSubmit={handleSubmit}>
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
       <div>
         <input
           id="name"
@@ -77,17 +101,15 @@ const RegisterForm = () => {
           onChange={handleChange}
           value={values.password}
         />
+
         {errors.password && touched.password ? (
           <div className="text-red-300 text-xs mt-2">{errors.password}</div>
         ) : null}
       </div>
 
       <div>
-        <button
-          type="submit"
-          className="flex w-full justify-center rounded-md bg-accent px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm "
-        >
-          Create an account
+        <button type="submit" disabled={isLoading} className="form-btn ">
+          <span>Register</span> {isLoading && <Spinner />}
         </button>
       </div>
     </form>

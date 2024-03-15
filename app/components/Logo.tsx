@@ -6,9 +6,7 @@ const Logo = () => {
       <div className="h-10 w-10 bg-primary rounded-full flex items-center justify-center mr-2">
         <h1 className="text-secondary text-xl font-bold">ET</h1>
       </div>
-      <h1 className="text-white text-xl md:text-2xl font-bold">
-        EducationTemp
-      </h1>
+      <h1 className="text-white text-xl md:text-2xl font-bold">EduTech</h1>
     </Link>
   );
 };

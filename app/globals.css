@@ -30,4 +30,7 @@
   .input {
     @apply block bg-secondary w-full rounded border-0 p-3 text-sm text-white ring-1 ring-inset ring-gray-500 placeholder:text-gray-400;
   }
+  .form-btn {
+    @apply flex w-full justify-center items-center space-x-2 rounded-md bg-accent px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm;
+  }
 }
